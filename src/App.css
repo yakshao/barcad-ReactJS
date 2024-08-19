@@ -218,15 +218,44 @@
   height: 3px;
   bottom: -2px;
 }
+.footer{
+  display: flex;
+  min-height: 500px;
+  background-color: rgb(154, 189, 189);
+  margin-top: 50px;
+}
+.footerChild{
+display: flex;
+flex: 1;
+flex-basis: 40%;
+max-width: 90%;
+padding: 10px 30px;
+flex-direction: column;
 
+}
 
+.footerColor1{
+  background-color: #e2e2e2;
+}
+.footerColor2{
+  background-color: rgb(243, 243, 243);
+}
+
+.footer h3{
+  letter-spacing: 3px;
+}
 
 @media screen and (max-width: 800px) {
 
   .pHeader {
     padding: 5px;
   }
-
+  .pHeaderLogo{
+    padding: 0;
+  }
+  .stickyNav{
+    padding: 0px 5px;
+  }
   .navLink {
     display: none;
   }
@@ -242,5 +271,8 @@
   }
   .video:before{
     display: none;
+  }
+  .services h1{
+    font-size: 35px;
   }
 }

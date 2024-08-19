@@ -33,6 +33,7 @@ export function App() {
         <Route path='/contact' element={<BarC />} />
         <Route path='/career' element={<BarC />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
 
   )
@@ -227,5 +228,29 @@ function Services() {
       </div>
 
     </>
+  )
+}
+
+function Footer(){
+  useEffect(() => {
+    AOS.init();
+
+  }, [])
+
+  return(
+    <div className='footer'>
+      <div data-aos='fade-up'  className='footerChild footerColor1 center'>
+       <h3>Design . Build . Launch</h3>
+       
+       <h1>let's build
+</h1>
+        <h2>
+        something awesome</h2>
+      </div>
+      <div className='footerChild footerColor2'>
+        <h2>Design.Build.Launch</h2>
+      </div>
+    </div>
+   
   )
 }
