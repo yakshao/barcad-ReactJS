@@ -1,0 +1,246 @@
+#root {
+  margin: 0px;
+  box-sizing: border-box;
+  animation: opacity 300ms;
+  min-width: 1vw;
+  min-height: 1vh;
+}
+
+
+.read-the-docs {
+  color: #888;
+}
+
+.pHeader {
+  display: flex;
+  max-height: 50px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  background-color: rgb(255, 255, 255);
+  letter-spacing: 1.5px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 50px;
+}
+
+
+.pHeaderLogo {
+  min-width: 200px;
+  max-height: 50px;
+  padding: 0 10px;
+  margin: 10px 30px;
+}
+
+.pHeaderLogo img {
+  width: 100%;
+  max-height: 70px;
+
+}
+
+.pHeaderNav {
+  flex: 3 1 100%;
+  padding: 0 40px;
+
+}
+
+.stickyHeaderNav {
+  flex: 0 1 50%;
+  padding: 0 40px;
+
+}
+
+.navLink {
+  flex: 1 1;
+  text-align: center;
+  position: relative;
+}
+
+.navLink a {
+  font-size: 18px;
+  font-weight: 500;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navLink a {
+  color: black
+}
+
+.flex {
+  display: flex;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+.video {
+  height: 650px;
+  position: relative;
+  overflow: hidden;
+  top: -70px;
+  z-index: -1;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.video:before {
+  content: '';
+  position: absolute;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.stickyNav {
+  max-height: 70px;
+  display: flex;
+  position: fixed;
+  min-width: 100%;
+  background-color: white;
+  padding: 0 50px;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+  box-shadow: 0px 0px 8px lightgray;
+}
+
+.stickyNavAnimStart {
+  top: 0;
+  animation: marginAnim 500ms;
+}
+
+.stickyNavAnimEnd {
+  top: -100px;
+  animation: marginAnimRetrace 500ms;
+}
+
+.stickyNav img {
+  max-width: 150px;
+  aspect-ratio: auto;
+  max-height: 70px;
+  padding: 5px 10px;
+}
+
+@keyframes marginAnim {
+  from {
+    top: -100px;
+  }
+
+  to {
+    top: 0px;
+  }
+}
+
+@keyframes marginAnimRetrace {
+  from {
+    top: 0px;
+  }
+
+  to {
+    top: -100px;
+  }
+}
+
+.services {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px;
+  padding: 10px 50px;
+  margin: 10px 0px;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.card {
+  flex: 1 1 100%;
+  flex-grow: 1;
+  min-width: 100px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  background-color: white;
+
+}
+
+.cardImg {
+  flex: 1;
+  max-height: 50%;
+  overflow: hidden;
+  border-bottom: 2px solid lightgray;
+}
+
+.cardImg img {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.cardContent {
+  flex: 1;
+  max-height: 50%;
+  padding: 5px 30px;
+  text-align: left;
+}
+
+
+.cardContent p {
+  font-size: 15px;
+}
+
+.cardContent h4 {
+  color: darkslategrey;
+}
+
+
+.current::after {
+  content: '';
+  background: #CC5252;
+  position: absolute;
+  left: 37.5%;
+  width: 25%;
+  height: 3px;
+  bottom: -2px;
+}
+
+
+
+@media screen and (max-width: 800px) {
+
+  .pHeader {
+    padding: 5px;
+  }
+
+  .navLink {
+    display: none;
+  }
+  .cardContainer{
+    flex-direction: column;
+    
+  }
+  .services{
+    padding: 5px;
+  }
+  .video{
+    display: none;
+  }
+  .video:before{
+    display: none;
+  }
+}
