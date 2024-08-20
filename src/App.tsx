@@ -5,7 +5,10 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInstagram, faTwitter, faFacebook, faLinkedin } from '@fortawesome/free-brands-svg-icons'
-
+import EmblaCarousel from './EmblaCarousel'
+import './css/base.css'
+import './css/sandbox.css'
+import './css/embla.css'
 export function App() {
 
   const [showFixedNav, setShowFixedNav] = useState(false);
@@ -32,7 +35,7 @@ export function App() {
       <Header />
 
       <Routes>
-        <Route path='/' element={<><BarC />  <Services /> </>} />
+        <Route path='/' element={<><BarC />  <Services /> <RecentWork /> </>} />
         <Route path='/services' element={<> < Services /> </>} />
         <Route path='/portfolio' element={<BarC />} />
         <Route path='/about' element={<BarC />} />
@@ -259,7 +262,7 @@ function Footer(){
   }, [])
 
   return(
-    <div className='footer'>
+    <div className='footerM'>
       <div data-aos='fade-up'  className='footerChild footerColor1 center flexColumn'>
 <div>
          <h3>Design . Build . Launch</h3>
@@ -267,7 +270,7 @@ function Footer(){
          <h1>Let's Build
   </h1>
           <h3>
-          something awesome</h3>
+         Something Awesome</h3>
 </div>
 
 <div className='faIcons'>
@@ -371,3 +374,29 @@ function Footer(){
    
   )
 }
+
+function RecentWork(){
+  const OPTIONS = {loop: true}
+const SLIDE_COUNT = 4
+const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
+
+useEffect(() => {
+  AOS.init();
+
+}, [])
+
+  return(
+<div data-aos='fade-up' className='recentWork'>
+  <div className='flex center'>
+    <h1> Recent Work</h1>
+  </div>
+ 
+    <div>
+ 
+    <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+    </div>
+
+</div>
+  )
+}
+

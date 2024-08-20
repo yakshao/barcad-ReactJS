@@ -4,6 +4,38 @@
   animation: opacity 300ms;
   min-width: 1vw;
   min-height: 1vh;
+  --brand-primary: rgb(47, 112, 193);
+  --brand-secondary: rgb(116, 97, 195);
+  --brand-alternative: rgb(19, 120, 134);
+  --background-site: rgb(249, 249, 249);
+  --background-code: rgb(244, 244, 244);
+  --text-body: rgb(54, 49, 61);
+  --text-comment: rgb(99, 94, 105);
+  --text-high-contrast: rgb(49, 49, 49);
+  --text-medium-contrast: rgb(99, 94, 105);
+  --text-low-contrast: rgb(116, 109, 118);
+  --detail-high-contrast: rgb(192, 192, 192);
+  --detail-medium-contrast: rgb(234, 234, 234);
+  --detail-low-contrast: rgb(240, 240, 242);
+  --admonition-note: rgb(46, 109, 188);
+  --admonition-warning: rgb(255, 196, 9);
+  --admonition-danger: rgb(220, 38, 38);
+  --brand-primary-rgb-value: 47, 112, 193;
+  --brand-secondary-rgb-value: 116, 97, 195;
+  --brand-alternative-rgb-value: 19, 120, 134;
+  --background-site-rgb-value: 249, 249, 249;
+  --background-code-rgb-value: 244, 244, 244;
+  --text-body-rgb-value: 54, 49, 61;
+  --text-comment-rgb-value: 99, 94, 105;
+  --text-high-contrast-rgb-value: 49, 49, 49;
+  --text-medium-contrast-rgb-value: 99, 94, 105;
+  --text-low-contrast-rgb-value: 116, 109, 118;
+  --detail-high-contrast-rgb-value: 192, 192, 192;
+  --detail-medium-contrast-rgb-value: 234, 234, 234;
+  --detail-low-contrast-rgb-value: 240, 240, 242;
+  --admonition-note-rgb-value: 46, 109, 188;
+  --admonition-warning-rgb-value: 255, 196, 9;
+  --admonition-danger-rgb-value: 220, 38, 38;
 }
 
 
@@ -13,7 +45,7 @@
 
 .pHeader {
   display: flex;
-  max-height: 50px;
+  max-height: 60px;
   justify-content: space-between;
   align-items: center;
   padding: 10px 30px;
@@ -124,7 +156,19 @@
   max-height: 70px;
   padding: 5px 10px;
 }
+.coro{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+}
+.coro img{
+  max-height: 95%;
+ 
+  object-fit: cover;
+  border-radius: 2%;
+  box-shadow:  0px 4px 10px 1px lightgray;
+}
 @keyframes marginAnim {
   from {
     top: -100px;
@@ -172,7 +216,7 @@
   flex-direction: column;
   text-align: center;
   margin: 20px;
-  border-radius: 20px;
+  border-radius: 30px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   background-color: white;
 }
@@ -189,8 +233,8 @@
 .cardImg img {
   width: 100%;
   height: 100%;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
 }
 
 .cardContent {
@@ -228,7 +272,7 @@
   height: 3px;
   bottom: 0px;
 }
-.footer{
+.footerM{
   display: flex;
   min-height: 500px;
   background-color: rgb(154, 189, 189);
@@ -252,7 +296,7 @@ padding: 10px 30px;
   background-color: rgb(243, 243, 243);
 }
 
-.footer h3{
+.footerM h3{
   letter-spacing: 3px;
 }
 .faIcons{
@@ -277,6 +321,18 @@ color: black;
 
 .footerGrid h6{
   margin: 10px 0px;
+}
+
+.red{
+  color: #CC5252;
+}
+.blue{
+  color: lightblue;
+}
+
+.recentWork{
+  flex: 1 1 100%;
+  min-width: 200px;
 }
 
 @media screen and (max-width: 800px) {
@@ -309,7 +365,7 @@ color: black;
   .services h1{
     font-size: 35px;
   }
-  .footer{
+  .footerM{
     flex-direction: column;
   }
 }
