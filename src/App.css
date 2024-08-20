@@ -173,11 +173,12 @@
   text-align: center;
   margin: 20px;
   border-radius: 20px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   background-color: white;
-
 }
-
+.card:hover{
+  box-shadow: 0px 0px 5px rgba(207, 0, 0, 0.5);
+}
 .cardImg {
   flex: 1;
   max-height: 50%;
@@ -218,6 +219,15 @@
   height: 3px;
   bottom: -2px;
 }
+.current2::after {
+  content: '';
+  background: #CC5252;
+  position: absolute;
+  left: 40%;
+  width: 20%;
+  height: 3px;
+  bottom: 0px;
+}
 .footer{
   display: flex;
   min-height: 500px;
@@ -230,12 +240,13 @@ flex: 1;
 flex-basis: 40%;
 max-width: 90%;
 padding: 10px 30px;
-flex-direction: column;
-
 }
-
+.flexColumn{
+  flex-direction: column;
+}
 .footerColor1{
   background-color: #e2e2e2;
+  text-align: center;
 }
 .footerColor2{
   background-color: rgb(243, 243, 243);
@@ -243,6 +254,29 @@ flex-direction: column;
 
 .footer h3{
   letter-spacing: 3px;
+}
+.faIcons{
+  display: flex;
+  margin: 20px;
+  align-self: center;
+}
+.faIcons > * {
+  padding: 0 10px;
+}
+.footerGrid{
+  padding: 10px 30px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.footerGrid a{
+font-size: 16px;
+text-decoration: none;
+color: black;
+}
+
+.footerGrid h6{
+  margin: 10px 0px;
 }
 
 @media screen and (max-width: 800px) {
@@ -274,5 +308,8 @@ flex-direction: column;
   }
   .services h1{
     font-size: 35px;
+  }
+  .footer{
+    flex-direction: column;
   }
 }
