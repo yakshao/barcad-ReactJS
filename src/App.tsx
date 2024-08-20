@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { BrowserRouter, Routes, Route, NavLink, useLocation} from 'react-router-dom';
+import { BrowserRouter, Routes, Route, NavLink, useLocation } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -12,8 +12,8 @@ import './css/embla.css'
 export function App() {
 
   const [showFixedNav, setShowFixedNav] = useState(false);
-
-
+  const [srcImg, setSrcImg] =useState('');
+  const [showFullImg , setFullImg] = useState(false)
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
 
@@ -33,7 +33,7 @@ export function App() {
     <BrowserRouter>
       <StickyNav showFixedNav={showFixedNav} />
       <Header />
-
+      
       <Routes>
         <Route path='/' element={<><BarC />  <Services /> <RecentWork /> </>} />
         <Route path='/services' element={<> < Services /> </>} />
@@ -68,30 +68,30 @@ function BarC() {
 }
 
 function Header() {
-  const {pathname} = useLocation();
-  useEffect(()=>{
+  const { pathname } = useLocation();
+  useEffect(() => {
     window.scrollTo(0, 0)
   }, [pathname])
 
   return (<div className='pHeader'>
     <div className="pHeaderLogo">
-     <NavLink to='/'>
+      <NavLink to='/'>
         <img
           src='/logo.png' />
-     </NavLink>
+      </NavLink>
     </div>
     <div className='pHeaderNav'>
       <div className='navLinks flex'>
-        <div className='navLink'> <NavLink 
-                        className={({ isActive, isPending }) => isActive ? 'current' : ''}
-        to={'/'}><div><a href=''>Home</a></div></NavLink></div>
+        <div className='navLink'> <NavLink
+          className={({ isActive, isPending }) => isActive ? 'current' : ''}
+          to={'/'}><div><a href=''>Home</a></div></NavLink></div>
 
 
-        <div className='navLink'> <NavLink 
-                        className={({ isActive, isPending }) => isActive ? 'current' : ''}
-        to={'/services'}><div><a href=''>Services</a></div></NavLink></div>
-        <div className='navLink'> <NavLink 
-        to={'/services'}><a href=''>Portfolio</a></NavLink></div>
+        <div className='navLink'> <NavLink
+          className={({ isActive, isPending }) => isActive ? 'current' : ''}
+          to={'/services'}><div><a href=''>Services</a></div></NavLink></div>
+        <div className='navLink'> <NavLink
+          to={'/services'}><a href=''>Portfolio</a></NavLink></div>
         <div className='navLink'> <NavLink to={'/services'}><a href=''>About Us</a></NavLink></div>
         <div className='navLink'> <NavLink to={'/services'}><a href=''>Contact Us</a></NavLink></div>
         <div className='navLink'> <NavLink to={'/services'}><a href=''>Career</a></NavLink></div>
@@ -104,26 +104,26 @@ function Header() {
 function StickyNav({ showFixedNav }: any) {
 
   return <div className={showFixedNav ? 'stickyNavAnimStart stickyNav' : 'stickyNavAnimEnd stickyNav'}>
- <NavLink to='/'>
-    <div className='flex center'>
-    
+    <NavLink to='/'>
+      <div className='flex center'>
+
         <img
           src='/logo.png' />
-    
-    </div>
-     </NavLink>
+
+      </div>
+    </NavLink>
 
     <div className='stickyHeaderNav'>
       <div className='navLinks flex'>
-      <div className='navLink'> <NavLink 
-                        className={({ isActive, isPending }) => isActive ? 'current2' : ''}
-        to={'/'}><div><a href=''>Home</a></div></NavLink></div>
+        <div className='navLink'> <NavLink
+          className={({ isActive, isPending }) => isActive ? 'current2' : ''}
+          to={'/'}><div><a href=''>Home</a></div></NavLink></div>
 
-        <div className='navLink'> <NavLink 
-                        className={({ isActive, isPending }) => isActive ? 'current2' : ''}
-        to={'/services'}><div><a href=''>Services</a></div></NavLink></div>
-        <div className='navLink'> <NavLink 
-        to={'/services'}><a href=''>Portfolio</a></NavLink></div>
+        <div className='navLink'> <NavLink
+          className={({ isActive, isPending }) => isActive ? 'current2' : ''}
+          to={'/services'}><div><a href=''>Services</a></div></NavLink></div>
+        <div className='navLink'> <NavLink
+          to={'/services'}><a href=''>Portfolio</a></NavLink></div>
         <div className='navLink'> <NavLink to={'/services'}><a href=''>About Us</a></NavLink></div>
         <div className='navLink'> <NavLink to={'/services'}><a href=''>Contact Us</a></NavLink></div>
         <div className='navLink'> <NavLink to={'/services'}><a href=''>Career</a></NavLink></div>
@@ -154,7 +154,7 @@ function Services() {
               />
 
             </div>
-            <div  className='cardContent'>
+            <div className='cardContent'>
               <h4>Digital Marketing</h4>
               <p>
                 <b> Ready to grow your business?</b> Join the hundreds of companies who have benefited from our sales strategies. Our seasoned team knows what it takes to boost your sales.
@@ -180,7 +180,7 @@ function Services() {
 
           </div>
 
-          <div  className="card" >
+          <div className="card" >
             <div className='cardImg'>
               <img
                 src='/ecom.jpg'
@@ -238,14 +238,14 @@ function Services() {
               />
 
             </div>
-            <div  className='cardContent'>
+            <div className='cardContent'>
               <h4>UI/UX Design</h4>
               <p><b>Your website: Your silent salesperson.</b>
                 Use the power of the internet to grow your business. Tell your brand story through your custom-build website, designed just for you by our expert developers.
               </p>
             </div>
           </div>
-  
+
 
 
         </div>
@@ -255,148 +255,157 @@ function Services() {
   )
 }
 
-function Footer(){
+function Footer() {
   useEffect(() => {
     AOS.init();
 
   }, [])
 
-  return(
+  return (
     <div className='footerM'>
-      <div data-aos='fade-up'  className='footerChild footerColor1 center flexColumn'>
-<div>
-         <h3>Design . Build . Launch</h3>
-         
-         <h1>Let's Build
-  </h1>
-          <h3>
-         Something Awesome</h3>
-</div>
+      <div data-aos='fade-up' className='footerChild footerColor1 center flexColumn'>
+        <div>
+          <h3>Design . Build . Launch</h3>
 
-<div className='faIcons'>
-              <div className='faChild'>
-                <FontAwesomeIcon icon={faInstagram} />
-              </div>
-              <div className='faChild'>
-                <FontAwesomeIcon icon={faTwitter} />
-              </div>
-              <div className='faChild'>
-                <FontAwesomeIcon icon={faLinkedin} />
-              </div>
-              <div className='faChild'>
-                <FontAwesomeIcon icon={faFacebook} />
-              </div>
-            </div>
+          <h1>Let's Build
+          </h1>
+          <h3>
+            Something Awesome</h3>
+        </div>
+
+        <div className='faIcons'>
+          <div className='faChild'>
+            <FontAwesomeIcon icon={faInstagram} />
+          </div>
+          <div className='faChild'>
+            <FontAwesomeIcon icon={faTwitter} />
+          </div>
+          <div className='faChild'>
+            <FontAwesomeIcon icon={faLinkedin} />
+          </div>
+          <div className='faChild'>
+            <FontAwesomeIcon icon={faFacebook} />
+          </div>
+        </div>
 
       </div>
       <div className='footerChild footerColor2'>
-      <div className='footerGrid'>
-      <div>
-        <h6>Overview</h6>
-      </div>
-      <div> 
-     <a href='#'>About Us </a>
-      </div>
-      <div> 
-     <a href='#'>Services</a>
-      </div>
-      <div> 
-     <a href='#'>Portfolio</a>
-      </div>
-      <div> 
-     <a href='#'>Blog</a>
-      </div>
-      <div> 
-     <a href='#'>Contact Us </a>
-      </div>
-      <div> 
-     <a href='#'>Privacy policy </a>
-      </div>
-      <div> 
-     <a href='#'>Terms and Conditions </a>
-      </div>
-      <div> 
-     <a href='#'>Returns and refunds policy </a>
-      </div>
-      <div> 
-     <a href='#'>Shipping policy</a>
-      </div>
-      <div> 
-     <a href='#'>Terms and Conditions </a>
+        <div className='footerGrid'>
+          <div>
+            <h6>Overview</h6>
+          </div>
+          <div>
+            <a href='#'>About Us </a>
+          </div>
+          <div>
+            <a href='#'>Services</a>
+          </div>
+          <div>
+            <a href='#'>Portfolio</a>
+          </div>
+          <div>
+            <a href='#'>Blog</a>
+          </div>
+          <div>
+            <a href='#'>Contact Us </a>
+          </div>
+          <div>
+            <a href='#'>Privacy policy </a>
+          </div>
+          <div>
+            <a href='#'>Terms and Conditions </a>
+          </div>
+          <div>
+            <a href='#'>Returns and refunds policy </a>
+          </div>
+          <div>
+            <a href='#'>Shipping policy</a>
+          </div>
+          <div>
+            <a href='#'>Terms and Conditions </a>
+          </div>
+        </div>
+
+        <div className='footerGrid'>
+          <div><h6>Web solutions</h6></div>
+          <div>
+            <a href='#'>UI/UX Designs</a>
+          </div>
+          <div>
+            <a href='#'>Ecommerce Web</a>
+          </div>
+          <div>
+            <a href='#'>News Portal</a>
+          </div>
+          <div>
+            <a href='#'>Personal portfolio</a>
+          </div>
+          <div>
+            <a href='#'>LMS Portal</a>
+          </div>
+        </div>
+
+        <div className='footerGrid'>
+          <div><h6>Digital Marketing</h6></div>
+          <div>
+            <a href='#'>PPC</a>
+          </div>
+          <div>
+            <a href='#'>SEO</a>
+          </div>
+          <div>
+            <a href='#'>CRO</a>
+          </div>
+          <div>
+            <a href='#'>Logo Design</a>
+          </div>
+          <div>
+            <a href='#'>Social Media Marketing</a>
+          </div>
+          <div>
+            <a href='#'>Whatsapp Marketing</a>
+          </div>
+          <div>
+            <a href='#'>Email Marketing</a>
+          </div>
+        </div>
       </div>
     </div>
 
-      <div className='footerGrid'>
-      <div><h6>Web solutions</h6></div>
-      <div> 
-     <a href='#'>UI/UX Designs</a>
-      </div>
-      <div> 
-     <a href='#'>Ecommerce Web</a>
-      </div>
-      <div> 
-     <a href='#'>News Portal</a>
-      </div>
-      <div> 
-     <a href='#'>Personal portfolio</a>
-      </div>
-      <div> 
-     <a href='#'>LMS Portal</a>
-      </div>
-</div>
-      
-      <div className='footerGrid'>
-      <div><h6>Digital Marketing</h6></div>
-      <div> 
-     <a href='#'>PPC</a>
-      </div>
-      <div> 
-     <a href='#'>SEO</a>
-      </div>
-      <div> 
-     <a href='#'>CRO</a>
-      </div>
-      <div> 
-     <a href='#'>Logo Design</a>
-      </div>
-      <div> 
-     <a href='#'>Social Media Marketing</a>
-      </div>
-      <div> 
-     <a href='#'>Whatsapp Marketing</a>
-      </div>
-      <div> 
-     <a href='#'>Email Marketing</a>
-      </div>
-      </div>
-      </div>
-    </div>
-   
   )
 }
 
-function RecentWork(){
-  const OPTIONS = {loop: true}
-const SLIDE_COUNT = 4
-const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
+function RecentWork() {
+  const OPTIONS = { loop: true}
+  const SLIDE_COUNT = 6
+  const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
 
-useEffect(() => {
-  AOS.init();
+  return (
+<div className='flex center'>
+      <div className='recentWork'>
+        <div className='flex center'>
+          <h2> Recent Work</h2>
+        </div>
+  
+        <div>
+  
+          <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+        </div>
+  
+      </div>
+</div>
+  )
+}
 
-}, [])
+
+function FullImg({src} : any){
 
   return(
-<div data-aos='fade-up' className='recentWork'>
-  <div className='flex center'>
-    <h1> Recent Work</h1>
-  </div>
- 
-    <div>
- 
-    <EmblaCarousel slides={SLIDES} options={OPTIONS} />
-    </div>
+    <div className='fullImg'>
+      <img 
+      src= {src}
+      />
 
-</div>
+    </div>
   )
 }
-
