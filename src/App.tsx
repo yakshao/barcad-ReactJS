@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { BrowserRouter, Routes, Route, NavLink, useLocation } from 'react-router-dom';
+import { Routes, Route, NavLink, useLocation, HashRouter } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInstagram, faTwitter, faFacebook, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { faInstagram, faTwitter, faFacebook, faLinkedin,  } from '@fortawesome/free-brands-svg-icons'
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import EmblaCarousel from './EmblaCarousel'
 import './css/base.css'
 import './css/sandbox.css'
@@ -12,8 +13,9 @@ import './css/embla.css'
 export function App() {
 
   const [showFixedNav, setShowFixedNav] = useState(false);
-  const [srcImg, setSrcImg] =useState('');
-  const [showFullImg , setFullImg] = useState(false)
+
+  const [showMobNav, setShowMobNav] = useState(false)
+
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
 
@@ -30,20 +32,20 @@ export function App() {
 
   return (
 
-    <BrowserRouter>
-      <StickyNav showFixedNav={showFixedNav} />
-      <Header />
-      
+    <HashRouter>
+      <StickyNav setShowMobNav={setShowMobNav} showFixedNav={showFixedNav} />
+      <Header setShowMobNav={setShowMobNav} />
+      {showMobNav && <MobileNav setShowMobNav={setShowMobNav}/>  }
       <Routes>
-        <Route path='/' element={<><BarC />  <Services /> <RecentWork /> </>} />
+        <Route path='/' element={<><BarC /> <Portfolio />  <Services /> <RecentWork /> </>} />
         <Route path='/services' element={<> < Services /> </>} />
-        <Route path='/portfolio' element={<BarC />} />
-        <Route path='/about' element={<BarC />} />
-        <Route path='/contact' element={<BarC />} />
+        <Route path='/portfolio' element={<Portfolio />} />
+        <Route path='/about' element={<AboutUs />} />
+        <Route path='/contact' element={<Contact />} />
         <Route path='/career' element={<BarC />} />
       </Routes>
       <Footer />
-    </BrowserRouter>
+    </HashRouter>
 
   )
 }
@@ -59,7 +61,7 @@ function BarC() {
     <div data-aos='fade-up' className='video'>
       <video loop muted autoPlay width={'100%'}>
         <source
-          src='/myv.mp4' />
+          src='/vid.mp4' />
 
       </video>
     </div>
@@ -67,41 +69,58 @@ function BarC() {
   </>;
 }
 
-function Header() {
+function Header({ setShowMobNav}: any) {
+
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [pathname])
 
-  return (<div className='pHeader'>
-    <div className="pHeaderLogo">
-      <NavLink to='/'>
+  return (<div className= {pathname == '/' ? 'pHeader' : 'pHeader2'} >
+        <NavLink to='/'>  
+        <div className= {pathname == '/' ? 'pHeaderLogo' : 'pHeaderLogo2'}>
+
         <img
           src='/logo.png' />
-      </NavLink>
-    </div>
+     
+    </div> 
+    </NavLink>
     <div className='pHeaderNav'>
       <div className='navLinks flex'>
         <div className='navLink'> <NavLink
-          className={({ isActive, isPending }) => isActive ? 'current' : ''}
+          className={({ isActive }) => isActive ? 'current' : ''}
           to={'/'}><div><a href=''>Home</a></div></NavLink></div>
 
 
         <div className='navLink'> <NavLink
-          className={({ isActive, isPending }) => isActive ? 'current' : ''}
+          className={({ isActive }) => isActive ? 'current' : ''}
           to={'/services'}><div><a href=''>Services</a></div></NavLink></div>
         <div className='navLink'> <NavLink
-          to={'/services'}><a href=''>Portfolio</a></NavLink></div>
-        <div className='navLink'> <NavLink to={'/services'}><a href=''>About Us</a></NavLink></div>
-        <div className='navLink'> <NavLink to={'/services'}><a href=''>Contact Us</a></NavLink></div>
+              className={({ isActive }) => isActive ? 'current' : ''}
+          to={'/portfolio'}><a href=''>Portfolio</a></NavLink></div>
+            <div className='navLink'> <NavLink
+              className={({ isActive }) => isActive ? 'current' : ''}
+          to={'/about'}><a href=''>About Us</a></NavLink></div>
+             <div className='navLink'> <NavLink
+              className={({ isActive }) => isActive ? 'current' : ''}
+          to={'/contact'}><a href=''>Contact Us</a></NavLink></div>
+       
         <div className='navLink'> <NavLink to={'/services'}><a href=''>Career</a></NavLink></div>
 
+      </div>
+      <div 
+      className='mobNav'
+      onClick={()=>setShowMobNav(true )}
+      >
+      <div className='bread'>
+              <FontAwesomeIcon icon={faBars} />
+            </div>
       </div>
     </div>
   </div>)
 }
 
-function StickyNav({ showFixedNav }: any) {
+function StickyNav({ setShowMobNav, showFixedNav }: any) {
 
   return <div className={showFixedNav ? 'stickyNavAnimStart stickyNav' : 'stickyNavAnimEnd stickyNav'}>
     <NavLink to='/'>
@@ -115,21 +134,34 @@ function StickyNav({ showFixedNav }: any) {
 
     <div className='stickyHeaderNav'>
       <div className='navLinks flex'>
-        <div className='navLink'> <NavLink
-          className={({ isActive, isPending }) => isActive ? 'current2' : ''}
+      <div className='navLink'> <NavLink
+          className={({ isActive }) => isActive ? 'current2' : ''}
           to={'/'}><div><a href=''>Home</a></div></NavLink></div>
 
+
         <div className='navLink'> <NavLink
-          className={({ isActive, isPending }) => isActive ? 'current2' : ''}
+          className={({ isActive }) => isActive ? 'current2' : ''}
           to={'/services'}><div><a href=''>Services</a></div></NavLink></div>
         <div className='navLink'> <NavLink
-          to={'/services'}><a href=''>Portfolio</a></NavLink></div>
-        <div className='navLink'> <NavLink to={'/services'}><a href=''>About Us</a></NavLink></div>
-        <div className='navLink'> <NavLink to={'/services'}><a href=''>Contact Us</a></NavLink></div>
+              className={({ isActive }) => isActive ? 'current2' : ''}
+          to={'/portfolio'}><a href=''>Portfolio</a></NavLink></div>
+           <div className='navLink'> <NavLink
+              className={({ isActive }) => isActive ? 'current2' : ''}
+          to={'/about'}><a href=''>About Us</a></NavLink></div>
+             <div className='navLink'> <NavLink
+              className={({ isActive }) => isActive ? 'current2' : ''}
+          to={'/contact'}><a href=''>Contact Us</a></NavLink></div>
         <div className='navLink'> <NavLink to={'/services'}><a href=''>Career</a></NavLink></div>
-
       </div>
     </div>
+    <div 
+      className='mobNav'
+      onClick={()=>setShowMobNav(true )}
+      >
+      <div className='bread'>
+              <FontAwesomeIcon icon={faBars} />
+            </div>
+      </div>
   </div>;
 }
 
@@ -142,7 +174,7 @@ function Services() {
     <>
       <div data-aos='fade-up' className='services'>
         <div className='flex '>
-          <h1>Services We Offer</h1>
+          <h1>Our Services</h1>
 
         </div>
 
@@ -262,149 +294,261 @@ function Footer() {
   }, [])
 
   return (
-    <div className='footerM'>
-      <div data-aos='fade-up' className='footerChild footerColor1 center flexColumn'>
-        <div>
-          <h3>Design . Build . Launch</h3>
-
-          <h1>Let's Build
-          </h1>
-          <h3>
-            Something Awesome</h3>
+<>
+      <div data-aos='fade-up' className='footerM'>
+        <div  data-aos='fade-up' className='footerChild footerColor1 center flexColumn'>
+          <div>
+            <h3>Design . Build . Launch</h3>
+  
+            <h1>Let's Build
+            </h1>
+            <h3>
+              Something Awesome</h3>
+          </div>
+  
+          <div className='faIcons'>
+            <div className='faChild'>
+              <FontAwesomeIcon icon={faInstagram} />
+            </div>
+            <div className='faChild'>
+              <FontAwesomeIcon icon={faTwitter} />
+            </div>
+            <div className='faChild'>
+              <FontAwesomeIcon icon={faLinkedin} />
+            </div>
+            <div className='faChild'>
+              <FontAwesomeIcon icon={faFacebook} />
+            </div>
+          </div>
+  
         </div>
-
-        <div className='faIcons'>
-          <div className='faChild'>
-            <FontAwesomeIcon icon={faInstagram} />
+        <div className='footerChild footerColor2'>
+          <div className='footerGrid'>
+            <div>
+              <h6>Overview</h6>
+            </div>
+            <div>
+              <a href='#'>About Us </a>
+            </div>
+            <div>
+              <a href='#'>Services</a>
+            </div>
+            <div>
+              <a href='#'>Portfolio</a>
+            </div>
+            <div>
+              <a href='#'>Blog</a>
+            </div>
+            <div>
+              <a href='#'>Contact Us </a>
+            </div>
+            <div>
+              <a href='#'>Privacy policy </a>
+            </div>
+            <div>
+              <a href='#'>Terms and Conditions </a>
+            </div>
+            <div>
+              <a href='#'>Returns and refunds policy </a>
+            </div>
+            <div>
+              <a href='#'>Shipping policy</a>
+            </div>
+            <div>
+              <a href='#'>Terms and Conditions </a>
+            </div>
           </div>
-          <div className='faChild'>
-            <FontAwesomeIcon icon={faTwitter} />
+  
+          <div className='footerGrid'>
+            <div><h6>Web solutions</h6></div>
+            <div>
+              <a href='#'>UI/UX Designs</a>
+            </div>
+            <div>
+              <a href='#'>Ecommerce Web</a>
+            </div>
+            <div>
+              <a href='#'>News Portal</a>
+            </div>
+            <div>
+              <a href='#'>Personal portfolio</a>
+            </div>
+            <div>
+              <a href='#'>LMS Portal</a>
+            </div>
           </div>
-          <div className='faChild'>
-            <FontAwesomeIcon icon={faLinkedin} />
-          </div>
-          <div className='faChild'>
-            <FontAwesomeIcon icon={faFacebook} />
+  
+          <div className='footerGrid2'>
+            <div><h6>Digital Marketing</h6></div>
+            <div>
+              <a href='#'>PPC</a>
+            </div>
+            <div>
+              <a href='#'>SEO</a>
+            </div>
+            <div>
+              <a href='#'>CRO</a>
+            </div>
+            <div>
+              <a href='#'>Logo Design</a>
+            </div>
+            <div>
+              <a href='#'>Social Media Marketing</a>
+            </div>
+            <div>
+              <a href='#'>Whatsapp Marketing</a>
+            </div>
+            <div>
+              <a href='#'>Email Marketing</a>
+            </div>
           </div>
         </div>
-
       </div>
-      <div className='footerChild footerColor2'>
-        <div className='footerGrid'>
-          <div>
-            <h6>Overview</h6>
-          </div>
-          <div>
-            <a href='#'>About Us </a>
-          </div>
-          <div>
-            <a href='#'>Services</a>
-          </div>
-          <div>
-            <a href='#'>Portfolio</a>
-          </div>
-          <div>
-            <a href='#'>Blog</a>
-          </div>
-          <div>
-            <a href='#'>Contact Us </a>
-          </div>
-          <div>
-            <a href='#'>Privacy policy </a>
-          </div>
-          <div>
-            <a href='#'>Terms and Conditions </a>
-          </div>
-          <div>
-            <a href='#'>Returns and refunds policy </a>
-          </div>
-          <div>
-            <a href='#'>Shipping policy</a>
-          </div>
-          <div>
-            <a href='#'>Terms and Conditions </a>
-          </div>
-        </div>
+      <div className='footerBottom'>
 
-        <div className='footerGrid'>
-          <div><h6>Web solutions</h6></div>
-          <div>
-            <a href='#'>UI/UX Designs</a>
-          </div>
-          <div>
-            <a href='#'>Ecommerce Web</a>
-          </div>
-          <div>
-            <a href='#'>News Portal</a>
-          </div>
-          <div>
-            <a href='#'>Personal portfolio</a>
-          </div>
-          <div>
-            <a href='#'>LMS Portal</a>
-          </div>
-        </div>
-
-        <div className='footerGrid'>
-          <div><h6>Digital Marketing</h6></div>
-          <div>
-            <a href='#'>PPC</a>
-          </div>
-          <div>
-            <a href='#'>SEO</a>
-          </div>
-          <div>
-            <a href='#'>CRO</a>
-          </div>
-          <div>
-            <a href='#'>Logo Design</a>
-          </div>
-          <div>
-            <a href='#'>Social Media Marketing</a>
-          </div>
-          <div>
-            <a href='#'>Whatsapp Marketing</a>
-          </div>
-          <div>
-            <a href='#'>Email Marketing</a>
-          </div>
-        </div>
+        <p>© Barcadly Services</p>
       </div>
-    </div>
+</>
 
   )
 }
 
 function RecentWork() {
-  const OPTIONS = { loop: true}
+  const OPTIONS = { loop: true }
   const SLIDE_COUNT = 6
   const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
 
   return (
-<div className='flex center'>
+    <div className='flex center'>
       <div className='recentWork'>
         <div className='flex center'>
           <h2> Recent Work</h2>
         </div>
-  
+
         <div>
-  
+
           <EmblaCarousel slides={SLIDES} options={OPTIONS} />
         </div>
-  
+
       </div>
-</div>
+    </div>
   )
 }
 
 
-function FullImg({src} : any){
+
+function Portfolio() {
+
+  let urls: any = [
+    'https://barcadlyservices.com/wp-content/uploads/2023/08/Screenshot-2023-08-29-123921.png',
+    'https://barcadlyservices.com/wp-content/uploads/elementor/thumbs/sapce_14-min-jpg-qfs8t3z00gppy8ryeunb3fr5f02meho1mwf6u9dg2o.webp',
+    'https://barcadlyservices.com/wp-content/uploads/elementor/thumbs/18-jpg-qg3ymaf9b82vpzgfmq88fidnji99itryqk51vy5nds.webp',
+    'https://barcadlyservices.com/wp-content/uploads/elementor/thumbs/2-1-jpg-qg3ynfs5nxnhwtscx83th7xxoglexic5k8uf04gbs0.webp',
+    'https://barcadlyservices.com/wp-content/uploads/elementor/thumbs/10-min-jpg-qfs8uuy6qd3xk48h73vb8hv17tg7q7m27k4pzss2hs.webp',
+    'https://barcadlyservices.com/wp-content/uploads/2023/08/Screenshot-2023-08-29-123921.png',
+    'https://barcadlyservices.com/wp-content/uploads/elementor/thumbs/sapce_14-min-jpg-qfs8t3z00gppy8ryeunb3fr5f02meho1mwf6u9dg2o.webp',
+    'https://barcadlyservices.com/wp-content/uploads/elementor/thumbs/18-jpg-qg3ymaf9b82vpzgfmq88fidnji99itryqk51vy5nds.webp',
+    'https://barcadlyservices.com/wp-content/uploads/elementor/thumbs/2-1-jpg-qg3ynfs5nxnhwtscx83th7xxoglexic5k8uf04gbs0.webp',
+    'https://barcadlyservices.com/wp-content/uploads/elementor/thumbs/10-min-jpg-qfs8uuy6qd3xk48h73vb8hv17tg7q7m27k4pzss2hs.webp',
+
+  ]
+
+  useEffect(() => {
+    AOS.init();
+
+  }, [])
+
+  return (
+    <>
+      <div data-aos='fade-up' className='flex center margin10'>
+        <h1>Portfolio</h1>
+      </div>
+      <div className='flex center'>
+
+
+        <div data-aos='fade-up' className='portfolio'>
+          {urls.map((source: any) => {
+            return (
+              <div className='gridImg'>
+                <img
+                  src={source}
+                />
+              </div>
+
+            )
+          })}
+
+
+        </div>
+
+      </div>
+    </>
+  )
+}
+
+function AboutUs(){
 
   return(
-    <div className='fullImg'>
-      <img 
-      src= {src}
-      />
+    <div className='aboutus'>
+      <h1>BARCADLY</h1>
+
+<div className='paddingContent'>
+          <p><b>BARCADLY SERVICES</b> is an accomplished digital transformation company in India with a creativity perspective. We offer scalable web and mobile solutions coupled with digital marketing services under one roof. </p>
+  
+</div>  
+    </div>
+
+  )
+}
+
+function Contact(){
+
+  return(
+<>
+  
+      <div className='aboutus'>
+        <h1>Head Office</h1>
+      </div>
+      <div className='paddingContent'>
+       <div className='paddingContent'> <p>3rs floor, Trade Center, Kolhapur Station Rd</p></div>
+       <div className='paddingContent'> <p>New Shahupuri, Kolhapur,</p></div>
+       <div className='paddingContent'> <p>Kolhapur, Maharashtra. 416001</p></div>
+      </div>
+
+</>
+  )
+}
+
+function MobileNav({setShowMobNav}: any) {
+
+  return(
+    <div className='mobileNav'
+    onClick={()=>setShowMobNav(false)}
+    >
+   <div className='navLink'>
+    
+     <div className='mobNavLinks'>
+       <NavLink
+            className={({ isActive }) => isActive ? 'current' : ''}
+            to={'/'}><div><a href=''>Home</a></div></NavLink></div>
+  
+  
+          <div className='navLink'> <NavLink
+            className={({ isActive }) => isActive ? 'current' : ''}
+            to={'/services'}><div><a href=''>Services</a></div></NavLink></div>
+          <div className='navLink'> <NavLink
+                className={({ isActive }) => isActive ? 'current' : ''}
+            to={'/portfolio'}><a href=''>Portfolio</a></NavLink></div>
+              <div className='navLink'> <NavLink
+                className={({ isActive }) => isActive ? 'current' : ''}
+            to={'/about'}><a href=''>About Us</a></NavLink></div>
+               <div className='navLink'> <NavLink
+                className={({ isActive }) => isActive ? 'current' : ''}
+            to={'/contact'}><a href=''>Contact Us</a></NavLink></div>
+         
+          <div className='navLink'> <NavLink to={'/services'}><a href=''>Career</a></NavLink></div>
+  
+     </div>
 
     </div>
   )

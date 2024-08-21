@@ -44,8 +44,21 @@
 }
 
 .pHeader {
+  overflow: hidden;
   display: flex;
   max-height: 60px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  background-color: rgb(255, 255, 255);
+  letter-spacing: 1.5px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 50px;
+}
+.pHeader2 {
+  overflow: hidden;
+  display: flex;
+  max-height: 100px;
   justify-content: space-between;
   align-items: center;
   padding: 10px 30px;
@@ -61,13 +74,38 @@
   max-height: 50px;
   padding: 0 10px;
   margin: 10px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pHeaderLogo2 {
+  min-width: 200px;
+  max-height: 50px;
+  padding: 0 10px;
+  margin: 10px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .pHeaderLogo img {
+  width: 95%;
+  max-height: 70px;
+}
+
+.pHeaderLogo2 img {
   width: 100%;
   max-height: 70px;
-
 }
+.pHeaderLogo a {
+margin: 0;
+padding: 0;
+}
+.pHeaderLogo2 a {
+  margin: 0;
+  padding: 0;
+  }
+  
 
 .pHeaderNav {
   flex: 3 1 100%;
@@ -96,6 +134,7 @@
 .navLink a {
   color: black
 }
+
 
 .flex {
   display: flex;
@@ -204,6 +243,10 @@
   flex-wrap: wrap;
 }
 
+.services h1 {
+  margin-top: 10px;
+}
+
 .cardContainer {
   display: flex;
   flex-direction: row;
@@ -246,7 +289,7 @@
   flex: 1;
   max-height: 50%;
   padding: 5px 30px;
-  text-align: left;
+  text-align: justify;
 }
 
 
@@ -281,12 +324,28 @@
 
 .footerM {
   display: flex;
-  min-height: 500px;
-  background-color: rgb(154, 189, 189);
+  min-height: 550px;
+  /* background-color: rgb(154, 189, 189); */
   margin-top: 50px;
+  background-image: url('/flowers.jpg');
+  background-size: contain;
+  overflow: hidden;
 }
 .footerM h1 {
   letter-spacing: 5px;
+}
+
+.footerBottom{
+  min-height: 50px;
+  display: flex;
+  flex: 1 1 100%;
+  justify-content: center;
+  align-content: center;
+}
+
+.footerBottom{
+  font-size: 15px;
+  color: black;
 }
 
 .footerChild {
@@ -302,7 +361,8 @@
 }
 
 .footerColor1 {
-  background-color: #e2e2e2;
+  /* background-color: #e2e2e2; */
+  background-color: rgba(226, 226, 226, 0.8);
   text-align: center;
 }
 
@@ -331,13 +391,31 @@
   flex-direction: column;
 }
 
+.footerGrid2 {
+  padding: 10px 30px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+
 .footerGrid a {
   font-size: 16px;
   text-decoration: none;
   color: black;
 }
 
+.footerGrid2 a {
+  font-size: 16px;
+  text-decoration: none;
+  color: black;
+}
+
 .footerGrid h6 {
+  margin: 10px 0px;
+}
+
+.footerGrid2 h6 {
   margin: 10px 0px;
 }
 
@@ -389,7 +467,82 @@
 
 }
 
+@keyframes animWidth {
+  from {
+    width: 0px;
+  }
 
+}
+
+.portfolio{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 50px;
+  padding: 50px 50px;
+  border-radius: 10px;
+  max-width: 95%;
+  background-color: rgb(247, 249, 252);
+}
+.gridImg{
+  box-shadow: 0px 0px 20px lightgray;
+  border-radius: 10px;
+
+}
+.gridImg img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+
+}
+.margin10 h1{
+  margin-top: 25px;
+
+}
+
+.aboutus{
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.paddingContent{
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.bread{
+display: none;
+}
+
+.mobNav{
+  display: none;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 5px;
+}
+
+.mobileNav{
+  display: flex;
+  position: fixed;
+  align-items: center;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 7;
+  background-color:rgba(75, 74, 74, 1);
+  padding: 20px;
+  animation: animWidth 200ms;
+
+}
+
+.mobileNav a {
+  color: white;
+}
 
 @media screen and (max-width: 800px) {
 
@@ -397,16 +550,25 @@
   .pHeader {
     padding: 5px;
   }
+  .pHeader2 {
+    padding: 5px;
+  }
 
   .pHeaderLogo {
     padding: 0;
+    margin: 5px 10px;
   }
+  .pHeaderLogo2 {
+    padding: 0;
+    margin: 5px 10px;
+  }
+
 
   .stickyNav {
-    padding: 0px 5px;
+    padding: 0px 30px;
   }
 
-  .navLink {
+  .navLinks {
     display: none;
   }
 
@@ -417,18 +579,30 @@
 
   .services {
     padding: 5px;
+    margin: 5px 0px;
   }
-
+.pHeaderNav{
+  flex-direction: column;
+  padding: 5px 20px;
+}
   .video {
-    display: none;
+    top: 0;
+    height: auto;
+    overflow: hidden;
   }
 
   .video:before {
-    display: none;
+   display: none;
   }
 
   .services h1 {
-    font-size: 40px;
+    font-size: 30px;
+  }
+.margin10 h1{
+  font-size: 30px;
+}
+  .services{
+    margin: 30px 5px;
   }
 
   .footerM {
@@ -452,4 +626,49 @@
     width: 90%;
     object-fit: contain;
   }
+  .card{
+    border-radius: 20px;
+    margin: 20px 10px;
+    box-shadow: 0px 0px 10px lightgray;
+    border: 1px solid lightgray;
+  }
+  .mobNav{
+    display: flex;
+  }
+  .bread{
+    display: flex;
+    align-self: flex-end;
+    visibility: visible;
+  }
+  .navLink{
+    margin: 10px;
+  }
+  .cardContent h4{
+    text-align: center;
+  }
+
+  .cardContainer{
+    justify-content: center;
+  }
+  .cardContent{
+    padding-bottom: 20px;
+  }
+  .portfolio{
+    grid-template-columns: 1fr 1fr;
+       gap: 10px; 
+       padding: 10px;
+       background-color: white;
+  }
+  .footerGrid2{
+    display: none;
+
+  }
+  .card:hover {
+    box-shadow: 0px 0px 5px rgba(207, 0, 0, 0.2);
+  }
+  .coro img {
+    max-height: 80%;
+  
+  }
+  
 }
